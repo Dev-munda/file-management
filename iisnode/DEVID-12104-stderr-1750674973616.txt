@@ -1,0 +1,54 @@
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.
+DB connection failed: ConnectionError: Failed to connect to DEVID:1433 - Could not connect (sequence)
+    at C:\ASPLWORK\LOGIN\node_modules\mssql\lib\tedious\connection-pool.js:85:17
+    at Connection.onConnect (C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:849:9)
+    at Object.onceWrapper (node:events:633:26)
+    at Connection.emit (node:events:518:28)
+    at Connection.emit (C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:970:18)
+    at Connection.socketError (C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:1353:12)
+    at C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:1146:14
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+  code: 'ESOCKET',
+  originalError: ConnectionError: Failed to connect to DEVID:1433 - Could not connect (sequence)
+      at Connection.socketError (C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:1353:28)
+      at C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:1146:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+    code: 'ESOCKET',
+    [cause]: AggregateError: Could not connect (sequence)
+        at connectInSequence (C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connector.js:114:9)
+        at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+        at async C:\ASPLWORK\LOGIN\node_modules\tedious\lib\connection.js:1129:20 {
+      [errors]: [Array]
+    }
+  }
+}
+(node:12104) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Login error: RequestError: No connection is specified for that request.
+    at Request._query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:493:37)
+    at Request._query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\tedious\request.js:363:11)
+    at C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:461:12
+    at new Promise (<anonymous>)
+    at Request.query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:460:12)
+    at Request._template (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:94:26)
+    at Object.query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\global-connection.js:148:38)
+    at C:\ASPLWORK\LOGIN\app.js:61:35
+    at Layer.handleRequest (C:\ASPLWORK\LOGIN\node_modules\router\lib\layer.js:152:17)
+    at next (C:\ASPLWORK\LOGIN\node_modules\router\lib\route.js:157:13) {
+  code: 'ENOCONN'
+}
+Login error: RequestError: No connection is specified for that request.
+    at Request._query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:493:37)
+    at Request._query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\tedious\request.js:363:11)
+    at C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:461:12
+    at new Promise (<anonymous>)
+    at Request.query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:460:12)
+    at Request._template (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\base\request.js:94:26)
+    at Object.query (C:\ASPLWORK\LOGIN\node_modules\mssql\lib\global-connection.js:148:38)
+    at C:\ASPLWORK\LOGIN\app.js:61:35
+    at Layer.handleRequest (C:\ASPLWORK\LOGIN\node_modules\router\lib\layer.js:152:17)
+    at next (C:\ASPLWORK\LOGIN\node_modules\router\lib\route.js:157:13) {
+  code: 'ENOCONN'
+}

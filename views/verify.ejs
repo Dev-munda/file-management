@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+        }
+        .otp-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .otp-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .otp-icon {
+            font-size: 3rem;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        .otp-timer {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #dc3545;
+            margin-bottom: 25px;
+        }
+        .form-control {
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        .btn-verify {
+            width: 100%;
+            padding: 12px;
+            font-weight: 500;
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-verify:hover {
+            background-color: #218838;
+        }
+        .alert-success {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .otp-input {
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="otp-container">
+            <div class="otp-header">
+                <div class="otp-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Verify OTP</h2>
+            </div>
+
+            <% if (message) { %>
+                <div class="alert alert-success">
+                    <%= message %>
+                </div>
+            <% } %>
+
+            <div class="otp-timer" id="timer">
+                OTP expires in 60s
+            </div>
+
+            <form action="/verify-otp" method="POST">
+                <input type="hidden" name="email" value="<%= email %>">
+
+                <div class="mb-3">
+                    <input type="text" 
+                           class="form-control otp-input" 
+                           name="otp" 
+                           placeholder="Enter 6-digit OTP" 
+                           pattern="\d{6}" 
+                           maxlength="6" 
+                           required
+                           autocomplete="off"
+                           autofocus>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-verify">
+                    <i class="fas fa-check-circle me-2"></i> Verify OTP
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const expiresAt = <%= expiresAt %>;
+        const countdownEl = () => document.getElementById('timer');
+
+        function updateTimer() {
+            const now = Date.now();
+            const remaining = expiresAt - now;
+
+            if (remaining <= 0) {
+                window.location.href = '/';
+            } else {
+                const seconds = Math.floor(remaining / 1000);
+                countdownEl().textContent = `OTP expires in ${seconds}s`;
+                setTimeout(updateTimer, 1000);
+                
+                // Change color when time is running low
+                if (seconds <= 10) {
+                    countdownEl().style.color = '#dc3545';
+                    countdownEl().style.fontWeight = 'bold';
+                }
+            }
+        }
+
+        window.onload = updateTimer;
+
+        // Auto-focus on OTP input and move to next field if digit entered
+        document.addEventListener('DOMContentLoaded', function() {
+            const otpInput = document.querySelector('input[name="otp"]');
+            
+            // Restrict to numbers only
+            otpInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+    </script>
+</body>
+</html>

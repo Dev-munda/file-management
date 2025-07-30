@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #0e4197, #3a86ff);
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Menu button */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #0e4197;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      z-index: 1001;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding-top: 60px;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #0e4197;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Dashboard container */
+    .dashboard-container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .dashboard-container h1 {
+      color: #0e4197;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-container p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      padding: 10px 24px;
+      background-color: #0e4197;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #093072;
+    }
+  </style>
+</head>
+<body>
+
+
+  <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+
+
+  <div class="sidebar" id="sidebar">
+  
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+     <a href="/file-list ">List Folder</a>
+  </div>
+
+
+  <div class="dashboard-container">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>You have successfully logged in. This is your dashboard view.</p>
+    <button class="logout-btn" onclick="window.location.href='/logout'">Logout</button>
+  </div>
+
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

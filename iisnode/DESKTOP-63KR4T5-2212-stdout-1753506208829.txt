@@ -1,0 +1,8 @@
+App running at http://localhost:\\.\pipe\3b5716ab-6fc7-4c42-bcbe-826ae94a0308
+Connected to SQL Server
+{
+  id: 1,
+  username: 'dev',
+  password: '$2b$10$aUploAkT1.8igIrxVyHw7.SOWBopiOOgWW1EFZJbwbXcLQNy2mjvi',
+  created_at: 2025-07-24T16:29:28.517Z
+}
